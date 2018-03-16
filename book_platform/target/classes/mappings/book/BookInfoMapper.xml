@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.book.dao.BookInfoDao" >
+  <resultMap id="BaseResultMap" type="com.cs.book.entity.BookInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CAR_TYPE_ID" property="carTypeId" jdbcType="VARCHAR" />
+    <result column="PLAT_NUMBER" property="platNumber" jdbcType="VARCHAR" />
+    <result column="FRAME_NUMBER" property="frameNumber" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="BOOK_DATE" property="bookDate" jdbcType="VARCHAR" />
+    <result column="BOOK_TIME" property="bookTime" jdbcType="VARCHAR" />
+    <result column="STATION_ID" property="stationId" jdbcType="VARCHAR" />
+    <result column="BOOK_STATE" property="bookState" jdbcType="DECIMAL" />
+    <result column="BOOK_NUMBER" property="bookNumber" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="BOOK_CHANNEL" property="bookChannel" jdbcType="DECIMAL" />
+    <result column="BOOKER_NAME" property="bookerName" jdbcType="VARCHAR" />
+    <result column="ID_TYPE_ID" property="idTypeId" jdbcType="VARCHAR" />
+    <result column="ID_NUMBER" property="idNumber" jdbcType="VARCHAR" />
+    <result column="USE_CHARATER" property="useCharater" jdbcType="VARCHAR" />
+    <result column="VEHICLE_TYPE" property="vehicleType" jdbcType="VARCHAR" />
+    <result column="CHECK_TIME" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="CHECK_STATION" property="checkStation" jdbcType="VARCHAR" />
+    <result column="CHECK_SERIAL_NUMBER" property="checkSerialNumber" jdbcType="VARCHAR" />
+    <result column="CHECK_OPERATION_MARK" property="checkOperationMark" jdbcType="DECIMAL" />
+    <result column="CHECK_STATE" property="checkState" jdbcType="VARCHAR" />
+    <result column="ENGINE_NUMBER" property="engineNumber" jdbcType="VARCHAR" />
+    <result column="DRIVER_TYPE" property="driverType" jdbcType="VARCHAR" />
+    <result column="FUEL_TYPE" property="fuelType" jdbcType="VARCHAR" />
+    <result column="CAR_TYPE_NAME" property="carTypeName" jdbcType="VARCHAR" />
+    <result column="STATION_NAME" property="stationName" jdbcType="VARCHAR" />
+    <result column="ID_TYPE_NAME" property="idTypeName" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="VEHICLE_CHARACTER" property="vehicleCharacter" jdbcType="VARCHAR" />
+    <result column="REQUEST_IP" property="requestIp" jdbcType="VARCHAR" />
+    <result column="VERIFY_CODE" property="verifyCode" jdbcType="VARCHAR" />
+    <result column="OTHER_ID_NUMBER" property="otherIdNumber" jdbcType="VARCHAR" />
+    <result column="NEWFLAG" property="newflag" jdbcType="VARCHAR" />
+    <result column="COMP_APPLY_FORM_ID" property="compApplyFormId" jdbcType="VARCHAR" />
+    <result column="FIELD1" property="field1" jdbcType="VARCHAR" />
+    <result column="FIELD2" property="field2" jdbcType="VARCHAR" />
+    <result column="FIELD3" property="field3" jdbcType="VARCHAR" />
+    <result column="FIELD4" property="field4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CAR_TYPE_ID, PLAT_NUMBER, FRAME_NUMBER, MOBILE, BOOK_DATE, BOOK_TIME, STATION_ID, 
+    BOOK_STATE, BOOK_NUMBER, CREATE_DATE, BOOK_CHANNEL, BOOKER_NAME, ID_TYPE_ID, ID_NUMBER, 
+    USE_CHARATER, VEHICLE_TYPE, CHECK_TIME, CHECK_STATION, CHECK_SERIAL_NUMBER, CHECK_OPERATION_MARK, 
+    CHECK_STATE, ENGINE_NUMBER, DRIVER_TYPE, FUEL_TYPE, CAR_TYPE_NAME, STATION_NAME, 
+    ID_TYPE_NAME, USER_ID, USER_NAME, VEHICLE_CHARACTER, REQUEST_IP, VERIFY_CODE, OTHER_ID_NUMBER, 
+    NEWFLAG, COMP_APPLY_FORM_ID, FIELD1, FIELD2, FIELD3, FIELD4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from P_BOOK_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from P_BOOK_INFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cs.book.entity.BookInfo" >
+  	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+       select sys_guid() from dual
+    </selectKey> 
+    insert into P_BOOK_INFO (ID, CAR_TYPE_ID, PLAT_NUMBER, 
+      FRAME_NUMBER, MOBILE, BOOK_DATE, 
+      BOOK_TIME, STATION_ID, BOOK_STATE, 
+      BOOK_NUMBER, CREATE_DATE, BOOK_CHANNEL, 
+      BOOKER_NAME, ID_TYPE_ID, ID_NUMBER, 
+      USE_CHARATER, VEHICLE_TYPE, CHECK_TIME, 
+      CHECK_STATION, CHECK_SERIAL_NUMBER, CHECK_OPERATION_MARK, 
+      CHECK_STATE, ENGINE_NUMBER, DRIVER_TYPE, 
+      FUEL_TYPE, CAR_TYPE_NAME, STATION_NAME, 
+      ID_TYPE_NAME, USER_ID, USER_NAME, 
+      VEHICLE_CHARACTER, REQUEST_IP, VERIFY_CODE, 
+      OTHER_ID_NUMBER, NEWFLAG, COMP_APPLY_FORM_ID, 
+      FIELD1, FIELD2, FIELD3, 
+      FIELD4)
+    values (#{id,jdbcType=VARCHAR}, #{carTypeId,jdbcType=VARCHAR}, #{platNumber,jdbcType=VARCHAR}, 
+      #{frameNumber,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{bookDate,jdbcType=VARCHAR}, 
+      #{bookTime,jdbcType=VARCHAR}, #{stationId,jdbcType=VARCHAR}, #{bookState,jdbcType=DECIMAL}, 
+      #{bookNumber,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{bookChannel,jdbcType=DECIMAL}, 
+      #{bookerName,jdbcType=VARCHAR}, #{idTypeId,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{useCharater,jdbcType=VARCHAR}, #{vehicleType,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, 
+      #{checkStation,jdbcType=VARCHAR}, #{checkSerialNumber,jdbcType=VARCHAR}, #{checkOperationMark,jdbcType=DECIMAL}, 
+      #{checkState,jdbcType=VARCHAR}, #{engineNumber,jdbcType=VARCHAR}, #{driverType,jdbcType=VARCHAR}, 
+      #{fuelType,jdbcType=VARCHAR}, #{carTypeName,jdbcType=VARCHAR}, #{stationName,jdbcType=VARCHAR}, 
+      #{idTypeName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{vehicleCharacter,jdbcType=VARCHAR}, #{requestIp,jdbcType=VARCHAR}, #{verifyCode,jdbcType=VARCHAR}, 
+      #{otherIdNumber,jdbcType=VARCHAR}, #{newflag,jdbcType=VARCHAR}, #{compApplyFormId,jdbcType=VARCHAR}, 
+      #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, #{field3,jdbcType=VARCHAR}, 
+      #{field4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.book.entity.BookInfo" >
+    insert into P_BOOK_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="carTypeId != null" >
+        CAR_TYPE_ID,
+      </if>
+      <if test="platNumber != null" >
+        PLAT_NUMBER,
+      </if>
+      <if test="frameNumber != null" >
+        FRAME_NUMBER,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="bookDate != null" >
+        BOOK_DATE,
+      </if>
+      <if test="bookTime != null" >
+        BOOK_TIME,
+      </if>
+      <if test="stationId != null" >
+        STATION_ID,
+      </if>
+      <if test="bookState != null" >
+        BOOK_STATE,
+      </if>
+      <if test="bookNumber != null" >
+        BOOK_NUMBER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="bookChannel != null" >
+        BOOK_CHANNEL,
+      </if>
+      <if test="bookerName != null" >
+        BOOKER_NAME,
+      </if>
+      <if test="idTypeId != null" >
+        ID_TYPE_ID,
+      </if>
+      <if test="idNumber != null" >
+        ID_NUMBER,
+      </if>
+      <if test="useCharater != null" >
+        USE_CHARATER,
+      </if>
+      <if test="vehicleType != null" >
+        VEHICLE_TYPE,
+      </if>
+      <if test="checkTime != null" >
+        CHECK_TIME,
+      </if>
+      <if test="checkStation != null" >
+        CHECK_STATION,
+      </if>
+      <if test="checkSerialNumber != null" >
+        CHECK_SERIAL_NUMBER,
+      </if>
+      <if test="checkOperationMark != null" >
+        CHECK_OPERATION_MARK,
+      </if>
+      <if test="checkState != null" >
+        CHECK_STATE,
+      </if>
+      <if test="engineNumber != null" >
+        ENGINE_NUMBER,
+      </if>
+      <if test="driverType != null" >
+        DRIVER_TYPE,
+      </if>
+      <if test="fuelType != null" >
+        FUEL_TYPE,
+      </if>
+      <if test="carTypeName != null" >
+        CAR_TYPE_NAME,
+      </if>
+      <if test="stationName != null" >
+        STATION_NAME,
+      </if>
+      <if test="idTypeName != null" >
+        ID_TYPE_NAME,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="vehicleCharacter != null" >
+        VEHICLE_CHARACTER,
+      </if>
+      <if test="requestIp != null" >
+        REQUEST_IP,
+      </if>
+      <if test="verifyCode != null" >
+        VERIFY_CODE,
+      </if>
+      <if test="otherIdNumber != null" >
+        OTHER_ID_NUMBER,
+      </if>
+      <if test="newflag != null" >
+        NEWFLAG,
+      </if>
+      <if test="compApplyFormId != null" >
+        COMP_APPLY_FORM_ID,
+      </if>
+      <if test="field1 != null" >
+        FIELD1,
+      </if>
+      <if test="field2 != null" >
+        FIELD2,
+      </if>
+      <if test="field3 != null" >
+        FIELD3,
+      </if>
+      <if test="field4 != null" >
+        FIELD4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="carTypeId != null" >
+        #{carTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="platNumber != null" >
+        #{platNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="frameNumber != null" >
+        #{frameNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDate != null" >
+        #{bookDate,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTime != null" >
+        #{bookTime,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookState != null" >
+        #{bookState,jdbcType=DECIMAL},
+      </if>
+      <if test="bookNumber != null" >
+        #{bookNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookChannel != null" >
+        #{bookChannel,jdbcType=DECIMAL},
+      </if>
+      <if test="bookerName != null" >
+        #{bookerName,jdbcType=VARCHAR},
+      </if>
+      <if test="idTypeId != null" >
+        #{idTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="useCharater != null" >
+        #{useCharater,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleType != null" >
+        #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStation != null" >
+        #{checkStation,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSerialNumber != null" >
+        #{checkSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkOperationMark != null" >
+        #{checkOperationMark,jdbcType=DECIMAL},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNumber != null" >
+        #{engineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverType != null" >
+        #{driverType,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null" >
+        #{fuelType,jdbcType=VARCHAR},
+      </if>
+      <if test="carTypeName != null" >
+        #{carTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null" >
+        #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="idTypeName != null" >
+        #{idTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleCharacter != null" >
+        #{vehicleCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="requestIp != null" >
+        #{requestIp,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyCode != null" >
+        #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="otherIdNumber != null" >
+        #{otherIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="newflag != null" >
+        #{newflag,jdbcType=VARCHAR},
+      </if>
+      <if test="compApplyFormId != null" >
+        #{compApplyFormId,jdbcType=VARCHAR},
+      </if>
+      <if test="field1 != null" >
+        #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null" >
+        #{field2,jdbcType=VARCHAR},
+      </if>
+      <if test="field3 != null" >
+        #{field3,jdbcType=VARCHAR},
+      </if>
+      <if test="field4 != null" >
+        #{field4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.book.entity.BookInfo" >
+    update P_BOOK_INFO
+    <set >
+      <if test="carTypeId != null" >
+        CAR_TYPE_ID = #{carTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="platNumber != null" >
+        PLAT_NUMBER = #{platNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="frameNumber != null" >
+        FRAME_NUMBER = #{frameNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDate != null" >
+        BOOK_DATE = #{bookDate,jdbcType=VARCHAR},
+      </if>
+      <if test="bookTime != null" >
+        BOOK_TIME = #{bookTime,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null" >
+        STATION_ID = #{stationId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookState != null" >
+        BOOK_STATE = #{bookState,jdbcType=DECIMAL},
+      </if>
+      <if test="bookNumber != null" >
+        BOOK_NUMBER = #{bookNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookChannel != null" >
+        BOOK_CHANNEL = #{bookChannel,jdbcType=DECIMAL},
+      </if>
+      <if test="bookerName != null" >
+        BOOKER_NAME = #{bookerName,jdbcType=VARCHAR},
+      </if>
+      <if test="idTypeId != null" >
+        ID_TYPE_ID = #{idTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="useCharater != null" >
+        USE_CHARATER = #{useCharater,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleType != null" >
+        VEHICLE_TYPE = #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        CHECK_TIME = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStation != null" >
+        CHECK_STATION = #{checkStation,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSerialNumber != null" >
+        CHECK_SERIAL_NUMBER = #{checkSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkOperationMark != null" >
+        CHECK_OPERATION_MARK = #{checkOperationMark,jdbcType=DECIMAL},
+      </if>
+      <if test="checkState != null" >
+        CHECK_STATE = #{checkState,jdbcType=VARCHAR},
+      </if>
+      <if test="engineNumber != null" >
+        ENGINE_NUMBER = #{engineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverType != null" >
+        DRIVER_TYPE = #{driverType,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null" >
+        FUEL_TYPE = #{fuelType,jdbcType=VARCHAR},
+      </if>
+      <if test="carTypeName != null" >
+        CAR_TYPE_NAME = #{carTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationName != null" >
+        STATION_NAME = #{stationName,jdbcType=VARCHAR},
+      </if>
+      <if test="idTypeName != null" >
+        ID_TYPE_NAME = #{idTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleCharacter != null" >
+        VEHICLE_CHARACTER = #{vehicleCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="requestIp != null" >
+        REQUEST_IP = #{requestIp,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyCode != null" >
+        VERIFY_CODE = #{verifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="otherIdNumber != null" >
+        OTHER_ID_NUMBER = #{otherIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="newflag != null" >
+        NEWFLAG = #{newflag,jdbcType=VARCHAR},
+      </if>
+      <if test="compApplyFormId != null" >
+        COMP_APPLY_FORM_ID = #{compApplyFormId,jdbcType=VARCHAR},
+      </if>
+      <if test="field1 != null" >
+        FIELD1 = #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null" >
+        FIELD2 = #{field2,jdbcType=VARCHAR},
+      </if>
+      <if test="field3 != null" >
+        FIELD3 = #{field3,jdbcType=VARCHAR},
+      </if>
+      <if test="field4 != null" >
+        FIELD4 = #{field4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.book.entity.BookInfo" >
+    update P_BOOK_INFO
+    set CAR_TYPE_ID = #{carTypeId,jdbcType=VARCHAR},
+      PLAT_NUMBER = #{platNumber,jdbcType=VARCHAR},
+      FRAME_NUMBER = #{frameNumber,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      BOOK_DATE = #{bookDate,jdbcType=VARCHAR},
+      BOOK_TIME = #{bookTime,jdbcType=VARCHAR},
+      STATION_ID = #{stationId,jdbcType=VARCHAR},
+      BOOK_STATE = #{bookState,jdbcType=DECIMAL},
+      BOOK_NUMBER = #{bookNumber,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      BOOK_CHANNEL = #{bookChannel,jdbcType=DECIMAL},
+      BOOKER_NAME = #{bookerName,jdbcType=VARCHAR},
+      ID_TYPE_ID = #{idTypeId,jdbcType=VARCHAR},
+      ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      USE_CHARATER = #{useCharater,jdbcType=VARCHAR},
+      VEHICLE_TYPE = #{vehicleType,jdbcType=VARCHAR},
+      CHECK_TIME = #{checkTime,jdbcType=TIMESTAMP},
+      CHECK_STATION = #{checkStation,jdbcType=VARCHAR},
+      CHECK_SERIAL_NUMBER = #{checkSerialNumber,jdbcType=VARCHAR},
+      CHECK_OPERATION_MARK = #{checkOperationMark,jdbcType=DECIMAL},
+      CHECK_STATE = #{checkState,jdbcType=VARCHAR},
+      ENGINE_NUMBER = #{engineNumber,jdbcType=VARCHAR},
+      DRIVER_TYPE = #{driverType,jdbcType=VARCHAR},
+      FUEL_TYPE = #{fuelType,jdbcType=VARCHAR},
+      CAR_TYPE_NAME = #{carTypeName,jdbcType=VARCHAR},
+      STATION_NAME = #{stationName,jdbcType=VARCHAR},
+      ID_TYPE_NAME = #{idTypeName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      VEHICLE_CHARACTER = #{vehicleCharacter,jdbcType=VARCHAR},
+      REQUEST_IP = #{requestIp,jdbcType=VARCHAR},
+      VERIFY_CODE = #{verifyCode,jdbcType=VARCHAR},
+      OTHER_ID_NUMBER = #{otherIdNumber,jdbcType=VARCHAR},
+      NEWFLAG = #{newflag,jdbcType=VARCHAR},
+      COMP_APPLY_FORM_ID = #{compApplyFormId,jdbcType=VARCHAR},
+      FIELD1 = #{field1,jdbcType=VARCHAR},
+      FIELD2 = #{field2,jdbcType=VARCHAR},
+      FIELD3 = #{field3,jdbcType=VARCHAR},
+      FIELD4 = #{field4,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+    <!-- 自定义 -->
+  <sql id="conditions" >
+  	<where>
+  	 <foreach collection="sqlCriterions" item="criterionItem" separator="and" >
+  	 	<choose>
+  	 		<when test="criterionItem.noValue">
+  	 			${criterionItem.condition}
+  	 		</when>
+  	 		<when test="criterionItem.singleValue">
+  	 			${criterionItem.condition} #{criterionItem.value}
+  	 		</when>
+  	 		<when test="criterionItem.betweenValue">
+  	 			${criterionItem.condition} #{criterionItem.value} and #{criterionItem.secondValue}
+  	 		</when>
+  	 		<when test="criterionItem.listValue">
+  	 			 ${criterionItem.condition}
+                  <foreach collection="criterionItem.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+  	 		</when>
+  	 	</choose>
+      </foreach>
+  	</where>
+  </sql>
+
+  <select id="findAllData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_BOOK_INFO
+  </select>
+  
+  
+  <select id="findByCondition" parameterType="com.cs.mvc.dao.SqlCondition" resultMap="BaseResultMap">
+	select 
+	<if test="distinct" >
+      distinct
+    </if>
+	<include refid="Base_Column_List" />
+	  from P_BOOK_INFO
+	<if test="_parameter != null" >
+      <include refid="conditions" />
+    </if>
+    <if test="orderbyClause != null and orderby" >
+    	order by
+    <foreach collection="orderbyClause" item="listItem" separator=",">
+      	 ${listItem}
+    </foreach>
+    </if>
+  </select>
+  
+  <select id="countByCondition" parameterType="com.cs.mvc.dao.SqlCondition" resultType="java.lang.Integer">
+   	select count(*) from P_BOOK_INFO
+    <if test="_parameter != null" >
+      <include refid="conditions" />
+    </if>
+  </select>
+  
+  
+</mapper>

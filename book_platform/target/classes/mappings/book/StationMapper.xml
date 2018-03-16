@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cs.book.dao.StationDao" >
+  <resultMap id="BaseResultMap" type="com.cs.book.entity.Station" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="LONGITUDE" property="longitude" jdbcType="FLOAT" />
+    <result column="LATITUDE" property="latitude" jdbcType="FLOAT" />
+    <result column="STATE" property="state" jdbcType="DECIMAL" />
+    <result column="DISTRICT" property="district" jdbcType="DECIMAL" />
+    <result column="ORDER_NUM" property="orderNum" jdbcType="DECIMAL" />
+    <result column="VIEW_NAME" property="viewName" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="APP_SECRET" property="appSecret" jdbcType="VARCHAR" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="AES_KEY" property="aesKey" jdbcType="VARCHAR" />
+    <result column="MCH_ID" property="mchId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ADDRESS, CODE, CREATE_DATE, EMAIL, NAME, PHONE, LONGITUDE, LATITUDE, STATE, DISTRICT, 
+    ORDER_NUM, VIEW_NAME, APP_ID, APP_SECRET, TOKEN, AES_KEY, MCH_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from BOOK_P.P_STATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from BOOK_P.P_STATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cs.book.entity.Station" >
+     <selectKey keyProperty="id" resultType="String" order="BEFORE">  
+       select sys_guid() from dual
+    </selectKey>  
+    insert into BOOK_P.P_STATION (ID, ADDRESS, CODE, 
+      CREATE_DATE, EMAIL, NAME, 
+      PHONE, LONGITUDE, LATITUDE, 
+      STATE, DISTRICT, ORDER_NUM, 
+      VIEW_NAME, APP_ID, APP_SECRET, 
+      TOKEN, AES_KEY, MCH_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{longitude,jdbcType=FLOAT}, #{latitude,jdbcType=FLOAT}, 
+      #{state,jdbcType=DECIMAL}, #{district,jdbcType=DECIMAL}, #{orderNum,jdbcType=DECIMAL}, 
+      #{viewName,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{appSecret,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{aesKey,jdbcType=VARCHAR}, #{mchId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cs.book.entity.Station" >
+    insert into BOOK_P.P_STATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE,
+      </if>
+      <if test="latitude != null" >
+        LATITUDE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="district != null" >
+        DISTRICT,
+      </if>
+      <if test="orderNum != null" >
+        ORDER_NUM,
+      </if>
+      <if test="viewName != null" >
+        VIEW_NAME,
+      </if>
+      <if test="appId != null" >
+        APP_ID,
+      </if>
+      <if test="appSecret != null" >
+        APP_SECRET,
+      </if>
+      <if test="token != null" >
+        TOKEN,
+      </if>
+      <if test="aesKey != null" >
+        AES_KEY,
+      </if>
+      <if test="mchId != null" >
+        MCH_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=FLOAT},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=FLOAT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=DECIMAL},
+      </if>
+      <if test="viewName != null" >
+        #{viewName,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSecret != null" >
+        #{appSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="aesKey != null" >
+        #{aesKey,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null" >
+        #{mchId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cs.book.entity.Station" >
+    update BOOK_P.P_STATION
+    <set >
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE = #{longitude,jdbcType=FLOAT},
+      </if>
+      <if test="latitude != null" >
+        LATITUDE = #{latitude,jdbcType=FLOAT},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="district != null" >
+        DISTRICT = #{district,jdbcType=DECIMAL},
+      </if>
+      <if test="orderNum != null" >
+        ORDER_NUM = #{orderNum,jdbcType=DECIMAL},
+      </if>
+      <if test="viewName != null" >
+        VIEW_NAME = #{viewName,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        APP_ID = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appSecret != null" >
+        APP_SECRET = #{appSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        TOKEN = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="aesKey != null" >
+        AES_KEY = #{aesKey,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null" >
+        MCH_ID = #{mchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cs.book.entity.Station" >
+    update BOOK_P.P_STATION
+    set ADDRESS = #{address,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=FLOAT},
+      LATITUDE = #{latitude,jdbcType=FLOAT},
+      STATE = #{state,jdbcType=DECIMAL},
+      DISTRICT = #{district,jdbcType=DECIMAL},
+      ORDER_NUM = #{orderNum,jdbcType=DECIMAL},
+      VIEW_NAME = #{viewName,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      APP_SECRET = #{appSecret,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      AES_KEY = #{aesKey,jdbcType=VARCHAR},
+      MCH_ID = #{mchId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <!-- 自定义 -->
+  <sql id="conditions" >
+  	<where>
+  	 <foreach collection="sqlCriterions" item="criterionItem" separator="and" >
+  	 	<choose>
+  	 		<when test="criterionItem.noValue">
+  	 			${criterionItem.condition}
+  	 		</when>
+  	 		<when test="criterionItem.singleValue">
+  	 			${criterionItem.condition} #{criterionItem.value}
+  	 		</when>
+  	 		<when test="criterionItem.betweenValue">
+  	 			${criterionItem.condition} #{criterionItem.value} and #{criterionItem.secondValue}
+  	 		</when>
+  	 		<when test="criterionItem.listValue">
+  	 			 ${criterionItem.condition}
+                  <foreach collection="criterionItem.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+  	 		</when>
+  	 	</choose>
+      </foreach>
+  	</where>
+  </sql>
+
+  <select id="findAllData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_STATION
+  </select>
+  
+  
+  <select id="findByCondition" parameterType="com.cs.mvc.dao.SqlCondition" resultMap="BaseResultMap">
+	select 
+	<if test="distinct" >
+      distinct
+    </if>
+	<include refid="Base_Column_List" />
+	  from P_STATION
+	<if test="_parameter != null" >
+      <include refid="conditions" />
+    </if>
+    <if test="orderbyClause != null and orderby" >
+    	order by
+    <foreach collection="orderbyClause" item="listItem" separator=",">
+      	 ${listItem}
+    </foreach>
+    </if>
+  </select>
+  
+  <select id="countByCondition" parameterType="com.cs.mvc.dao.SqlCondition" resultType="java.lang.Integer">
+   	select count(*) from P_STATION
+    <if test="_parameter != null" >
+      <include refid="conditions" />
+    </if>
+  </select>
+</mapper>
